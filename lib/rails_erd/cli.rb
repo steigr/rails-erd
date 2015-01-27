@@ -145,6 +145,7 @@ module RailsERD
     def load_application
       $stderr.puts "Loading application in '#{File.basename(path)}'..."
       # TODO: Add support for different kinds of environment.
+      Object.send(:remove_const,:Choice) if Object.constants.include? :Choice
       require "#{path}/config/environment"
       Rails.application.eager_load!
     end
